@@ -32,8 +32,15 @@
       <a-list
         bordered
         :dataSource="recordList"
+        
       >
-        <a-list-item slot="renderItem" slot-scope="item, index">{{item}}</a-list-item>
+        <a-list-item slot="renderItem" slot-scope="item, index" >
+          <div >{{item.stock_name}}</div>
+          <div >{{currentDate}}</div>
+          <div >{{amount+'股'}}</div>
+          <div >{{amount*item.value_close+'元'}}</div>
+        </a-list-item>
+      
         <div slot="header">操作记录</div>
         
       </a-list>
@@ -81,6 +88,8 @@ export default {
       currentStock:{},
       columns,
       visible: false,
+      currentDate:'2019-09-12',
+      amount:1000
     }
   },
   async mounted() {
@@ -104,7 +113,7 @@ export default {
   methods: {
    
     showModal(text) {
-      console.log(text);
+      //console.log(text);
       
       this.currentStock = text;
       this.visible = true;
@@ -112,7 +121,12 @@ export default {
     },
     handleOk(e) {
       console.log(e);
-      this.visible = false
+      this.visible = false;
+      const {stock_name,value_close} = this.currentStock;
+      this.recordList.unshift({
+        stock_name,
+        value_close
+      })
     },
     
     
@@ -132,5 +146,6 @@ export default {
     width 60%
   .right
     width 30%
+    
  
 </style>
