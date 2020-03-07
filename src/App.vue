@@ -3,11 +3,11 @@
     
     <div class="left">
       <!-- 股票展示-->
-      <a-table :columns="columns" :dataSource="data" >
-        <a slot="name" slot-scope="text" href="javascript:;">{{text}}</a>
+      <a-table :columns="columns" :dataSource="stockList" :pagination="{ pageSize: 4 }">
+        <a slot="stock_name" slot-scope="text" href="javascript:;">{{text}}</a>
         <span slot="customTitle"> 股票名称</span>
-        <span slot="action" >
-          <a href="javascript:;" class="ant-dropdown-link" @click='showModal'>
+        <span slot="action" slot-scope="text">
+          <a href="javascript:;"  class="ant-dropdown-link" @click='showModal(text)'>
             操作 
           </a> 
           <a href="javascript:;" class="ant-dropdown-link" >
@@ -22,16 +22,16 @@
       v-model="visible"
       @ok="handleOk"
     >
-      <p>Some contents...</p>
-      <p>Some contents...</p>
-      <p>Some contents...</p>
+      <p>股票名称:{{currentStock.stock_name}}</p>
+      <p>交易数量：1000股（大于零买入，小于零售出）</p>
+      <p>股票单价：{{currentStock.value_close}}</p>
     </a-modal>
 
     <!-- 操作记录 -->
     <div class="right">
       <a-list
         bordered
-        :dataSource="data"
+        :dataSource="recordList"
       >
         <a-list-item slot="renderItem" slot-scope="item, index">{{item}}</a-list-item>
         <div slot="header">操作记录</div>
@@ -44,7 +44,7 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import {List} from 'ant-design-vue';
+  import Vue from 'vue';
   import {requestStockList} from './api/index';
   const columns = [
     {
@@ -76,7 +76,9 @@ export default {
   
   data() {
     return {
-      data:[],
+      stockList:[],
+      recordList:[],
+      currentStock:{},
       columns,
       visible: false,
     }
@@ -85,15 +87,28 @@ export default {
     let date = '2019-09-12';
     let fieldId = '27';
     let result = await requestStockList(date,fieldId);
-    console.log(result.data);
-    this.data = result.data;
+    result.data.forEach(item => {
+      Vue.set(item,'key',item.stock_name);
+      Vue.set(item,'change',Math.floor((item.value_close - item.value_open)*10000)/100 + '%');
+      if(item.value_close > item.value_open){
+        Vue.set(item,'status','涨');
+      }else{
+        Vue.set(item,'status','跌');
+
+      }
+    })
+    this.stockList = result.data;
 
 
   },
   methods: {
    
-    showModal() {
-      this.visible = true
+    showModal(text) {
+      console.log(text);
+      
+      this.currentStock = text;
+      this.visible = true;
+      
     },
     handleOk(e) {
       console.log(e);
