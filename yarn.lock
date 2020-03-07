@@ -3375,6 +3375,14 @@ event-pubsub@4.3.0:
   resolved "https://registry.npm.taobao.org/event-pubsub/download/event-pubsub-4.3.0.tgz#f68d816bc29f1ec02c539dc58c8dd40ce72cb36e"
   integrity sha1-9o2Ba8KfHsAsU53FjI3UDOcss24=
 
+eventbus@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.npm.taobao.org/eventbus/download/eventbus-0.0.3.tgz#a7f0fad169c99faeada9c493f48f161b5ea50ed9"
+  integrity sha1-p/D60WnJn66tqcST9I8WG16lDtk=
+  dependencies:
+    node-uuid ">=1.4.0"
+    ovy latest
+
 eventemitter3@^4.0.0:
   version "4.0.0"
   resolved "https://registry.npm.taobao.org/eventemitter3/download/eventemitter3-4.0.0.tgz#d65176163887ee59f386d64c82610b696a4a74eb"
@@ -5543,6 +5551,11 @@ node-releases@^1.1.50:
   dependencies:
     semver "^6.3.0"
 
+node-uuid@>=1.4.0:
+  version "1.4.8"
+  resolved "https://registry.npm.taobao.org/node-uuid/download/node-uuid-1.4.8.tgz#b040eb0923968afabf8d32fb1f17f1167fdab907"
+  integrity sha1-sEDrCSOWivq/jTL7HxfxFn/auQc=
+
 normalize-package-data@^2.5.0:
   version "2.5.0"
   resolved "https://registry.npm.taobao.org/normalize-package-data/download/normalize-package-data-2.5.0.tgz#e66db1838b200c1dfc233225d12cb36520e234a8"
@@ -5815,6 +5828,11 @@ os-tmpdir@~1.0.2:
   version "1.0.2"
   resolved "https://registry.npm.taobao.org/os-tmpdir/download/os-tmpdir-1.0.2.tgz#bbe67406c79aa85c5cfec766fe5734555dfa1274"
   integrity sha1-u+Z0BseaqFxc/sdm/lc0VV36EnQ=
+
+ovy@latest:
+  version "0.1.6"
+  resolved "https://registry.npm.taobao.org/ovy/download/ovy-0.1.6.tgz#1d83e5e152d8cbe02866cd4f7dea950e74057dd3"
+  integrity sha1-HYPl4VLYy+AoZs1PfeqVDnQFfdM=
 
 p-defer@^1.0.0:
   version "1.0.0"
