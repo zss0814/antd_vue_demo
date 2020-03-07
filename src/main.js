@@ -1,8 +1,19 @@
-import Vue from 'vue'
-import App from './App.vue'
+import Vue from "vue";
+// import Button from "ant-design-vue/lib/button";
+import {Table, Icon, List, Modal} from 'ant-design-vue';
+// import "ant-design-vue/dist/antd.css";
+import App from "./App";
 
-Vue.config.productionTip = false
+
+Vue.use(Modal)
+Vue.use(Table);
+Vue.use(Icon);
+Vue.use(List);
+
+
+
+Vue.config.productionTip = false;
 
 new Vue({
-  render: h => h(App),
-}).$mount('#app')
+  render: h => h(App)
+}).$mount("#app");
