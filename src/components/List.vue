@@ -34,11 +34,11 @@
         :dataSource="recordList"
         
       >
-        <a-list-item slot="renderItem" v-for="item in recordList" :key="item.stock_name">
-          <div >{{item.stock_name}}</div>
-          <div >{{item.currentDate}}</div>
-          <div >{{item.amount+'股'}}</div>
-          <div >{{item.amount*item.value_close+'元'}}</div>
+        <a-list-item slot="renderItem" slot-scope="item, index" key="item.stock_name">
+          <div style="width:30%">{{item.stock_name}}</div>
+          <div style="width:30%">{{item.currentDate}}</div>
+          <div style="width:20%">{{item.amount+'股'}}</div>
+          <div style="width:20%">{{item.amount*item.value_close+'元'}}</div>
         </a-list-item>
       
         <div slot="header">操作记录</div>
